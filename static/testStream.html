@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>Stream Demo</title>
+</head>
+<body>
+    <h2>输入提示词:</h2>
+    <input type="text" id="promptInput" placeholder="请输入提示词">
+    <button onclick="startStream()">开始流式响应(Lambda)</button>
+    <div id="output" style="margin-top: 20px;"></div>
+
+    <script>
+        function startStream() {
+            // const prompt = document.getElementById('promptInput').value;
+            const session = "e000a0c6-6634-4d80-9945-7d1f644a0449"
+            const itineraryId = 182
+            const step = 4
+            const outputDiv = document.getElementById('output');
+            outputDiv.innerHTML = ''; // 清空之前的输出
+
+            // 创建一个新的EventSource实例，连接到服务器端的/stream端点
+            // const eventSource = new EventSource(`https://nvhkhp6r4aehp6v4vhbhicdrhm0endjr.lambda-url.us-east-1.on.aws/?prompt=${encodeURIComponent(prompt)}`);
+            // const eventSource = new EventSource(`http://0.0.0.0:9000/stream/?prompt=${encodeURIComponent(prompt)}`);
+            const eventSource = new EventSource(`http://0.0.0.0:9000/storyStream/?session=${encodeURIComponent(session)}&itineraryId=${itineraryId}&step=${step}`);
+
+            eventSource.onmessage = function(event) {
+                // 当接收到新的数据时，将其添加到页面上
+
+                console.log('Received data:', event.data);
+                
+                // 使用 decodeURIComponent 和 escape 函数转换 Unicode 编码的字符串
+                var decodedMessage = decodeURIComponent(event.data).replace(/^"|"$/g, '');
+                
+                outputDiv.innerHTML += decodedMessage; 
+            };
+
+            eventSource.onerror = function() {
+                // 如果发生错误，关闭连接
+                eventSource.close();
+                outputDiv.innerHTML += '<p>流已结束</p>';
+            };
+        }
+    </script>
+</body>
+</html>
