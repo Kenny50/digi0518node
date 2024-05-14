@@ -69,24 +69,24 @@ function storyRouter(app) {
         }
         if (step == itinerary.Attractions.length) {
             //final story prompt
-            prompt = new StoryPrompt().finalStoryTemplate(backgroundStory.background, hasPrevious.story, itinerary.Attractions.pop().name,backgroundStory.expectEnd)
+            prompt = new StoryPrompt().finalStoryTemplate(backgroundStory.background, hasPrevious.story, itinerary.Attractions.pop().name, backgroundStory.expectEnd)
         }
         try {
-            // const command = promptToCommand(prompt)
-            // const apiResponse = await client.send(command);
-            // // 解码并处理响应流
-            // for await (const item of apiResponse.body) {
-            //     const chunk = JSON.parse(new TextDecoder().decode(item.chunk.bytes));
-            //     const chunk_type = chunk.type;
+            const command = promptToCommand(prompt)
+            const apiResponse = await client.send(command);
+            // 解码并处理响应流
+            for await (const item of apiResponse.body) {
+                const chunk = JSON.parse(new TextDecoder().decode(item.chunk.bytes));
+                const chunk_type = chunk.type;
 
-            //     if (chunk_type === "content_block_delta") {
-            //         const text = chunk.delta.text;
-            //         res.write(text);
-            //     }
-            // }
-            console.log(step)
-            console.log(itinerary.Attractions.length)
-            res.write(prompt);
+                if (chunk_type === "content_block_delta") {
+                    const text = chunk.delta.text;
+                    res.write(text);
+                }
+            }
+            // console.log(step)
+            // console.log(itinerary.Attractions.length)
+            // res.write(prompt);
         } catch (error) {
             console.error("处理API响应时发生错误：", error);
             res.write(`data: ${JSON.stringify({ error: "An error occurred while processing the request" })}\n\n`);
@@ -170,7 +170,7 @@ function storyRouter(app) {
                 currentStep: arrivedLocationIndex + 1,
                 isFinal: isFinal,
                 currentAttraction: currentAttraction.id,
-                nextAttraction: isFinal? null: itinerary.Attractions[arrivedLocationIndex + 1].id,
+                nextAttraction: isFinal ? null : itinerary.Attractions[arrivedLocationIndex + 1].id,
                 attractionName: currentAttraction.name
             })
         } else {
