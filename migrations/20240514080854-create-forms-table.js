@@ -16,6 +16,9 @@ module.exports = {
             text: {
                 type: Sequelize.TEXT
             },
+            en: {
+                type: Sequelize.TEXT
+            },
             itineraryRate: {
                 type: Sequelize.FLOAT
             },

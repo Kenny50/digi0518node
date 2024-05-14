@@ -10,6 +10,7 @@ class Forms extends Model {
 Forms.init({
     trafficRate: DataTypes.FLOAT,
     text: DataTypes.TEXT,
+    en: DataTypes.TEXT,
     itineraryRate: DataTypes.FLOAT,
     attractionRate: DataTypes.FLOAT,
     itineraryId: DataTypes.INTEGER
