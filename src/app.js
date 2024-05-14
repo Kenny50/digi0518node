@@ -6,7 +6,7 @@ const storyRouter = require('./route/storyRouter');
 const attractionsRouter = require('./route/attractionsRouter');
 const crawlerRouter = require('./route/crawlerRouter');
 const chatRouter = require('./route/chatRouter');
-const sequelize = require('./db/initDb');
+const formRouter = require('./route/formRouter');
 //todo 平行時空
 const cors = require('cors');
 app.use(cors());
@@ -18,6 +18,7 @@ storyRouter(app)
 attractionsRouter(app)
 crawlerRouter(app)
 chatRouter(app)
+formRouter(app)
 
 const port = 9000;
 const host = '0.0.0.0';

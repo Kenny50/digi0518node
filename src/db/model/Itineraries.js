@@ -4,6 +4,7 @@ const sequelize = require('../initDb');
 
 class Itineraries extends Model {
     static associate(models) {
+        Itineraries.hasMany(models.Forms, { foreignKey: 'itineraryId' });
         Itineraries.hasMany(models.AttractionInItinerary)
         Itineraries.belongsToMany(models.Attractions, {
             through: models.AttractionInItinerary,
