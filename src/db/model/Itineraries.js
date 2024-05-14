@@ -12,7 +12,9 @@ class Itineraries extends Model {
     }
 }
 Itineraries.init({
-    description: DataTypes.TEXT
+    description: DataTypes.TEXT,
+    cover: DataTypes.TEXT,
+    title: DataTypes.TEXT
 }, {
     sequelize,
     modelName: 'Itineraries',
