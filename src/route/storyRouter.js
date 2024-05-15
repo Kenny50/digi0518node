@@ -170,6 +170,7 @@ function storyRouter(app) {
                 currentStep: arrivedLocationIndex + 1,
                 isFinal: isFinal,
                 currentAttraction: currentAttraction.id,
+                cover: currentAttraction.cover,
                 nextAttraction: isFinal ? null : itinerary.Attractions[arrivedLocationIndex + 1].id,
                 attractionName: currentAttraction.name
             })

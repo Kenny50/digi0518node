@@ -88,7 +88,7 @@ function attractionsRouter(app) {
         //todo prompt
         const prompt = topTenAttractionIntroPrompt(attractions)
         try {
-            const command = promptAttractionToCommand(prompt)
+            const command = promptAttractionToCommand(prompt, query)
             const apiResponse = await client.send(command);
             // 解码并处理响应流
             for await (const item of apiResponse.body) {
