@@ -23,7 +23,7 @@ formRouter(app)
 summaryRouter(app)
 
 const port = 9000;
-const host = '0.0.0.0';
-app.listen(port, host, () => {
-    console.log(`Server running at http://${host}:${port}`);
+// const host = '0.0.0.0';
+app.listen(port, () => {
+    console.log(`Server running at http://127.0.0.1:${port}`);
 });
