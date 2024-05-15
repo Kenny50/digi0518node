@@ -2,7 +2,7 @@ version: "3"
 services:
   express:
     build: .
-    image: diginode:latest
+    image: kenny50/diginode:latest
     container_name: diginode
     ports:
       - 9000:9000
