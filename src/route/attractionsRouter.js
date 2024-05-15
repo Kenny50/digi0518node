@@ -48,7 +48,7 @@ function attractionsRouter(app) {
     app.get('/attractions/ai-powered', async (req, res) => {
         const { query } = req.query
 
-        const vectorRes = await axios.get(`${PY_URL}/vector?query=${query}`)
+        const vectorRes = await axios.get(`${process.env.PY_URL}/vector?query=${query}`)
 
         const vectorIds = vectorRes.data.result.map(innerArr => {
             return innerArr[0].metadata.id
@@ -73,7 +73,7 @@ function attractionsRouter(app) {
             'Cache-Control': 'no-cache',
             'Connection': 'keep-alive',
         });
-        const vectorRes = await axios.get(`${PY_URL}/vector?query=${query}`)
+        const vectorRes = await axios.get(`${process.env.PY_URL}/vector?query=${query}`)
 
         const vectorIds = vectorRes.data.result.map(innerArr => {
             return innerArr[0].metadata.id
