@@ -3,10 +3,11 @@ const { Summaries } = require('../db/models.js')
 
 function summaryRouter(app) {
     app.get('/summary', async (req, res) => {
-        const { label } = req.query
+        const { query } = req.query
+        console.log(query)
         const summary = await Summaries.findOne({
             where: {
-                label: label
+                label: query
             }
         })
 
