@@ -2,12 +2,16 @@ const Form = require('../db/model/Form');
 const multer = require('multer');
 const sequelize = require('../db/initDb');
 const { Op } = require('sequelize');
-
+const { detectLanguageCode, translateToEn } = require('../service/reviewUtil')
 function formRouter(app) {
     app.post('/form', multer().single(), async (req, res) => {
         const { itineraryId, trafficRate, itineraryRate, attractionRate, text } = req.body
 
-        await Form.create(req.body)
+        const review = await Form.create(req.body)
+        const languageCode = await detectLanguageCode(review.text)
+        const enText = await translateToEn(review, languageCode)
+        review.en = enText
+        review.save()
 
         res.json({ "statuc": "success" })
     })
