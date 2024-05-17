@@ -17,5 +17,6 @@ module.exports = {
     Itineraries,
     Attractions,
     AttractionInItinerary,
-    Summaries
+    Summaries,
+    Form
 }
