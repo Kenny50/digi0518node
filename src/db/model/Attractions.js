@@ -19,7 +19,8 @@ Attractions.init({
     url: DataTypes.STRING,
     cover: DataTypes.STRING,
     type: DataTypes.STRING,
-    description: DataTypes.TEXT
+    description: DataTypes.TEXT,
+    adMessage: DataTypes.TEXT
 }, {
     sequelize,
     modelName: 'Attractions',

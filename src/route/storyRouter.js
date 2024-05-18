@@ -152,12 +152,14 @@ function storyRouter(app) {
                 order: [['order', "ASC"]]
             }
         })
+
         const arrivedLocationIndex = itinerary.Attractions.findIndex(obj => obj.id == locationId);
         const currentAttraction = itinerary.Attractions[arrivedLocationIndex];
         if (itinerary.Attractions.length == hasPrevious.step) {
             //final
             res.json({
-                "isFinal": true
+                "isFinal": true,
+                messgae: currentAttraction.adMessage
             })
         } else if (arrivedLocationIndex == hasPrevious.step) {
             //check is right location
@@ -172,7 +174,9 @@ function storyRouter(app) {
                 currentAttraction: currentAttraction.id,
                 cover: currentAttraction.cover,
                 nextAttraction: isFinal ? null : itinerary.Attractions[arrivedLocationIndex + 1].id,
-                attractionName: currentAttraction.name
+                attractionName: currentAttraction.name,
+                message: currentAttraction.adMessage
+
             })
         } else {
             //error
