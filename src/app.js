@@ -8,6 +8,7 @@ const crawlerRouter = require('./route/crawlerRouter');
 const chatRouter = require('./route/chatRouter');
 const formRouter = require('./route/formRouter');
 const summaryRouter = require('./route/summaryRouter');
+const mysteryRouter = require('./route/mysteryRouter')
 //todo 平行時空
 const cors = require('cors');
 app.use(cors());
@@ -22,6 +23,7 @@ crawlerRouter(app)
 chatRouter(app)
 formRouter(app)
 summaryRouter(app)
+mysteryRouter(app)
 
 const port = 9000;
 // const host = '0.0.0.0';

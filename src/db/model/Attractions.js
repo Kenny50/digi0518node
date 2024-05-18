@@ -20,7 +20,11 @@ Attractions.init({
     cover: DataTypes.STRING,
     type: DataTypes.STRING,
     description: DataTypes.TEXT,
-    adMessage: DataTypes.TEXT
+    adMessage: DataTypes.TEXT,
+    hint: DataTypes.TEXT,
+    task: DataTypes.TEXT,
+    enTask: DataTypes.TEXT,
+    enHint: DataTypes.TEXT
 }, {
     sequelize,
     modelName: 'Attractions',
